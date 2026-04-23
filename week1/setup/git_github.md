@@ -231,6 +231,7 @@ nothing to commit, working tree clean
 ```
 Agar tidak terjadi confilct <br>
 Kalau misal ada output selain hal tersbeut boleh tanya ke aku
+
 ---
 
 ## 3.6 Buat Branch Baru
