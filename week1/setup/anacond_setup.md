@@ -1,204 +1,197 @@
-# Panduan Instalasi & Penggunaan Anaconda
+# Instalasi dan Penggunaan Anaconda untuk Transfer Learning Vision Amarine
 
-Dokumen ini memandu kamu dari nol hingga memiliki environment Python yang siap digunakan untuk proyek TL Vision Amarine.
+## 1. Latar Belakang
 
----
+Dalam pengembangan proyek **Transfer Learning Vision Amarine**, pengelolaan dependensi dan lingkungan kerja menjadi hal yang sangat penting.
 
-## 1. Instalasi Anaconda
+Jika hanya menggunakan Python secara langsung tanpa manajemen environment, beberapa masalah yang sering muncul antara lain:
 
-### Windows
+* Konflik versi library antar proyek
+* Kesulitan dalam mengelola dependensi
+* Instalasi library yang tidak stabil, terutama untuk kebutuhan machine learning
 
-1. Download installer di [https://www.anaconda.com/download](https://www.anaconda.com/download)
-2. Pilih versi **Python 3.10** atau lebih baru (64-bit)
-3. Jalankan file `.exe` yang sudah diunduh
-4. Ikuti wizard instalasi:
-   -  Centang **"Add Anaconda to my PATH environment variable"** *(opsional, tapi memudahkan)*
-   - Centang **"Register Anaconda as my default Python"**
-5. Klik **Install** dan tunggu hingga selesai
+Untuk mengatasi hal tersebut, digunakan **Anaconda** atau **Miniconda**.
 
-### macOS
+Keunggulan penggunaan Anaconda/Miniconda:
 
-```bash
-# Gunakan Homebrew (direkomendasikan)
-brew install --cask anaconda
+* Mendukung pembuatan environment terpisah untuk setiap proyek
+* Mempermudah instalasi dan pengelolaan library
+* Menghindari konflik antar dependensi
+* Lebih stabil untuk pengembangan proyek Transfer Learning Vision Amarine
 
-# Tambahkan ke PATH (tambahkan ke ~/.zshrc atau ~/.bash_profile)
-export PATH="/usr/local/anaconda3/bin:$PATH"
-
-# Reload shell
-source ~/.zshrc
-```
-
-### Linux (Ubuntu/Debian)
-
-```bash
-# Download installer
-wget https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Linux-x86_64.sh
-
-# Jalankan installer
-bash Anaconda3-2024.02-1-Linux-x86_64.sh
-
-# Ikuti instruksi, ketik 'yes' saat diminta
-# Setelah selesai, reload shell
-source ~/.bashrc
-```
+Kesimpulan:
+Penggunaan Anaconda atau Miniconda sangat direkomendasikan untuk menjaga kestabilan dan kerapian proyek.
 
 ---
 
-## 2. Verifikasi Instalasi
+## 2. Instalasi Anaconda / Miniconda
 
-Buka **Terminal** (macOS/Linux) atau **Anaconda Prompt** (Windows), lalu jalankan:
+### 2.1 Download
+
+Buka website resmi:
+[https://www.anaconda.com](https://www.anaconda.com)
+
+Pilih:
+
+* Miniconda (versi ringan)
+  alasannya : 
+  - Ukuran instalasi lebih kecil dan ringan
+  - Tidak membawa banyak library bawaan yang belum tentu digunakan
+  - Lebih fleksibel karena dependensi dapat diinstall sesuai kebutuhan proyek
+  - Cocok untuk pengembangan bertahap seperti pada Transfer Learning Vision Amarine
+  - Lebih optimal digunakan bersama Visual Studio Code karena environment dapat dikontrol secara spesifik
+---
+
+### 2.2 Proses Instalasi
+
+#### a. Pemilihan tipe instalasi
+
+Pilih:
+**Just Me (recommended)**
+
+Alasan:
+
+* Tidak memerlukan hak akses administrator
+* Lebih aman untuk penggunaan pribadi
+* Mengurangi potensi error
+
+---
+
+#### b. Lokasi instalasi
+
+Gunakan lokasi default yang disediakan installer.
+
+---
+
+#### c. Advanced Installation Options
+
+Pilih opsi berikut:
+
+* Create shortcuts
+* Register Anaconda as my default Python
+* Clear the package cache
+
+Jangan memilih:
+
+* Add Anaconda to PATH environment variable
+
+Penjelasan:
+
+* Create shortcuts: mempermudah akses aplikasi
+* Register default Python: memastikan Python dari Anaconda digunakan oleh sistem dan IDE
+* Clear cache: menghemat ruang penyimpanan
+* Add to PATH: dapat menyebabkan konflik dengan instalasi Python lain
+
+---
+
+### 2.3 Menyelesaikan instalasi
+
+Tunggu hingga proses instalasi selesai, kemudian lanjutkan ke tahap konfigurasi.
+
+---
+
+## 3. Konfigurasi Terminal
+
+### 3.1 Inisialisasi Conda
+
+Buka Anaconda Prompt, lalu jalankan perintah berikut:
+
+```bash
+conda init powershell
+conda init cmd.exe
+conda init bash
+```
+
+Penjelasan:
+
+* powershell: untuk PowerShell
+* cmd.exe: untuk Command Prompt
+* bash: untuk Git Bash atau WSL
+
+Setelah itu, tutup dan buka kembali terminal atau aplikasi seperti Visual Studio Code.
+
+---
+
+### 3.2 Verifikasi instalasi
+
+Jalankan perintah:
 
 ```bash
 conda --version
-# Output yang diharapkan: conda 24.x.x atau lebih baru
+```
 
-python --version
-# Output yang diharapkan: Python 3.10.x atau lebih baru
+Jika versi conda muncul, maka instalasi berhasil.
+
+---
+
+## 4. Penggunaan Dasar Anaconda
+
+### 4.1 Membuat environment baru
+
+Environment digunakan agar dependensi proyek tidak bercampur dengan proyek lain.
+
+Contoh:
+
+```bash
+conda create -n TL-Amarine-Vision python=3.10
 ```
 
 ---
 
-##  3. Membuat Environment Baru
-
-Environment adalah "ruang kerja" terisolasi yang memiliki versi Python dan library sendiri. Ini mencegah konflik antar proyek.
+### 4.2 Mengaktifkan environment
 
 ```bash
-# Buat environment bernama 'amarine' dengan Python 3.10 {environment bisa diganti dengan yang diinginkan}
-conda create -n amarine python=3.10
-
-# Tunggu proses selesai, lalu ketik 'y' saat diminta konfirmasi
+conda activate TL-Amarine-Vision
 ```
 
 ---
 
-##  4. Mengaktifkan & Menonaktifkan Environment
+### 4.3 Menginstal library
 
 ```bash
-# Mengaktifkan environment
-conda activate amarine
+conda install numpy pandas matplotlib
+```
 
-# Kamu akan melihat (amarine) di awal baris terminal:
-# (amarine) username@computer:~$
+Untuk kebutuhan Transfer Learning Vision Amarine:
 
-# Menonaktifkan environment (kembali ke base)
-conda deactivate
+```bash
+pip install torch torchvision
 ```
 
 ---
 
-## 5. Menginstal Library yang Dibutuhkan
-
-Pastikan environment `amarine` sudah aktif sebelum menginstal:
+### 4.4 Menghapus library
 
 ```bash
-# Pastikan environment aktif
-conda activate amarine
-
-# Install NumPy
-conda install numpy
-
-# Install OpenCV (via pip karena tidak tersedia di channel default conda)
-pip install opencv-python
-
-# Install library tambahan yang berguna
-conda install matplotlib pillow
-
-# Install sekaligus (cara lebih efisien)
-conda install numpy matplotlib pillow
-pip install opencv-python
-```
-
----
-
-## 6. Perintah Conda yang Sering Digunakan
-
-```bash
-# Melihat daftar semua environment yang ada
-conda env list
-
-# Melihat semua library yang terinstal di environment aktif
-conda list
-
-# Mencari library tertentu
-conda search numpy
-
-# Update library tertentu
-conda update numpy
-
-# Update semua library
-conda update --all
-
-# Menghapus library
 conda remove numpy
-
-# Menghapus environment (hati-hati!)
-conda env remove -n nama_environment
 ```
 
 ---
 
-##  7. Export & Import Environment
-
-Fitur ini berguna untuk berbagi environment dengan tim atau ketika pindah komputer.
+### 4.5 Menghapus environment
 
 ```bash
-# Export environment aktif ke file YAML
-conda env export > environment.yml
-
-# Membuat environment dari file YAML (digunakan orang lain)
-conda env create -f environment.yml
-
-# Aktifkan environment yang baru dibuat
-conda activate amarine
-```
-
-Contoh isi file `environment.yml`:
-
-```yaml
-name: amarine
-channels:
-  - defaults
-  - conda-forge
-dependencies:
-  - python=3.10
-  - numpy=1.24.3
-  - matplotlib=3.7.1
-  - pillow=9.4.0
-  - pip:
-    - opencv-python==4.8.0.76
+conda remove -n TL-Amarine-Vision --all
 ```
 
 ---
 
-## 8. Troubleshooting Umum
+## 5. Integrasi dengan Visual Studio Code
 
-### Conda tidak dikenali setelah instalasi (Windows)
-```bash
-# Buka Anaconda Prompt, bukan Command Prompt biasa
-# Atau tambahkan Conda ke PATH secara manual
-```
+Untuk menggunakan Anaconda di VS Code:
 
-### Error saat install OpenCV
-```bash
-# Coba uninstall dulu lalu install ulang
-pip uninstall opencv-python
-pip install opencv-python --upgrade
-```
+1. Install extension:
 
-### Environment tidak muncul di Jupyter
-```bash
-# Install ipykernel di environment amarine
-conda activate amarine
-pip install ipykernel
-python -m ipykernel install --user --name=amarine --display-name="Python (amarine)"
-```
+   * Python
+   * Pylance
 
-### Conda sangat lambat saat resolve dependencies
-```bash
-# Install dan gunakan mamba sebagai alternatif yang lebih cepat
-conda install -n base conda-libmamba-solver
-conda config --set solver libmamba
-```
+2. Pilih interpreter:
+
+   * Tekan Ctrl + Shift + P
+   * Pilih: Python: Select Interpreter
+
+3. Pilih environment:
+
+   * TL-Amarine-Vision (conda)
 
 ---
