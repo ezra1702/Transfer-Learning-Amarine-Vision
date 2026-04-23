@@ -223,13 +223,14 @@ Alasan:
 ## 3.6 Buat Branch Baru
 
 ```bash
-git checkout -b fitur-tugas
+git checkout -b [branch-sendiri]
 ```
 
 Alasan:
 
 * tidak bekerja langsung di main
 * memisahkan pekerjaan
+* Setiap melakukan pekerjaan, buat branch baruuu yang berbeda - beda
 
 ---
 
@@ -256,7 +257,7 @@ Alasan:
 ## 3.9 Push ke GitHub
 
 ```bash
-git push origin fitur-tugas
+git push origin [branch-sendiri]
 ```
 
 Alasan:
