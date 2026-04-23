@@ -198,21 +198,39 @@ Alasan:
 ## 3.5 Update Repository (WAJIB sebelum mulai kerja)
 
 ```bash
+git status
 git checkout main
 git pull upstream main
 git push origin main
-```
+````
 
 Penjelasan:
 
-* pindah ke branch utama
-* ambil update dari repository utama
-* sinkronkan ke repository sendiri
+* `git status` → memastikan tidak ada perubahan atau conflict (HARUS clean)
+* `git checkout main` → pindah ke branch utama
+* `git pull upstream main` → ambil update terbaru dari repository utama
+* `git push origin main` → sinkronkan ke repository sendiri (fork)
 
 Alasan:
 
-* memastikan menggunakan versi terbaru
-* menghindari conflict saat bekerja
+* memastikan repository dalam kondisi bersih sebelum update
+* menghindari conflict saat mengambil perubahan terbaru
+* memastikan menggunakan versi terbaru dari owner
+* menjaga sinkronisasi antara local, upstream, dan origin
+
+Penting diingat! <br>
+saat menekan perintah : 
+```bash
+git status
+```
+wajib outputnya : 
+```bash
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+```
+Agar tidak terjadi confilct <br>
+Kalau misal ada output selain hal tersbeut boleh tanya ke aku
 
 ---
 
