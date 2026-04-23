@@ -223,15 +223,11 @@ saat menekan perintah :
 ```bash
 git status
 ```
-wajib outputnya : 
+outputnya : 
 ```bash
-Your branch is up to date with 'origin/main'.
-
 nothing to commit, working tree clean
 ```
-Agar tidak terjadi confilct <br>
-Kalau misal ada output selain hal tersbeut boleh tanya ke aku
-
+Agar tidak terjadi confilct
 ---
 
 ## 3.6 Buat Branch Baru
