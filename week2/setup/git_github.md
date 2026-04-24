@@ -275,3 +275,5 @@ Alasan:
 
 * mengajukan perubahan ke repository utama
 * dilakukan review sebelum digabung
+
+WAJIB SCREENSHOT DAN KIRIM DI WA BIAR DI REVIEW YAAA 
