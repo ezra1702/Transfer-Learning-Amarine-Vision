@@ -1,66 +1,117 @@
-#  Week 1 — Anaconda Environment Setup & Basic GitHub
+# Week 1: Bonding & Introduction to Vision Amarine
 
-Halo, selamat datang di minggu pertama TL Vision Amarine 👋
+## Deskripsi
+Pada minggu pertama, fokus utama adalah pengenalan dasar mengenai Vision Programming dalam konteks Amarine, serta membangun pemahaman awal tentang peran Computer Vision dalam sistem robotik.
 
-Di minggu pertama ini, kamu akan belajar cara mempersiapkan lingkungan kerja Python yang bersih dan terorganisir menggunakan **Anaconda**, serta memahami dasar-dasar penggunaan **Git & GitHub** untuk mengelola kode secara profesional.
-
----
-
-##  Tujuan Pembelajaran
-
-Setelah menyelesaikan materi minggu ini, kamu diharapkan mampu:
-
-- Menginstal dan mengonfigurasi **Anaconda** di sistem operasi masing-masing
-- Membuat dan mengelola **virtual environment** Python menggunakan Conda
-- Menginstal library Python yang dibutuhkan (`numpy`, `opencv-python`, dll.)
-- Memahami konsep dasar **version control** menggunakan Git
-- Melakukan operasi Git fundamental: `init`, `add`, `commit`, `push`, dan `pull`
-- Menghubungkan repository lokal ke **GitHub**
+Kegiatan pada tahap ini bersifat konseptual dan orientasi, dengan tujuan membangun fondasi sebelum masuk ke implementasi teknis pada minggu berikutnya.
 
 ---
 
-##  Materi yang Dipelajari
-
-### 1. Anaconda & Virtual Environment
-- Instalasi Anaconda
-- Perintah dasar Conda (`create`, `activate`, `deactivate`, `install`, `list`)
-- Manajemen environment untuk proyek yang terisolasi
-- Export & import environment menggunakan `environment.yml`
-
-### 2. Git & GitHub
-- Konsep dasar version control
-- Konfigurasi awal Git (`git config`)
-- Alur kerja Git: `init` → `add` → `commit` → `push`
-- Membuat dan mengelola repository di GitHub
-- Perintah `pull`, `clone`, dan `status`
+## Tujuan Pembelajaran
+- Memahami konsep dasar Vision Programming  
+- Mengetahui peran Computer Vision dalam robot Amarine  
+- Memahami alur kerja sistem vision secara umum  
+- Mengenal tools dan teknologi yang akan digunakan selama pembelajaran  
 
 ---
 
-## Tools yang Digunakan
+## Materi Utama
 
-| Tool | Versi | Fungsi |
-|------|-------|--------|
-| [Anaconda](https://www.anaconda.com/) | Latest | Manajemen environment Python |
-| [Python](https://www.python.org/) | 3.10+ | Bahasa pemrograman utama |
-| [Git](https://git-scm.com/) | 2.x | Version control system |
-| [GitHub](https://github.com/) | — | Platform hosting repository |
-| [VS Code](https://code.visualstudio.com/) | Latest | Code editor (opsional) |
-| NumPy | 1.24+ | Library komputasi numerik |
-| OpenCV | 4.x | Library computer vision |
+### 1. Pengenalan Vision Programming
+Vision Programming merupakan kemampuan sistem untuk:
+- Mengambil gambar dari sensor kamera  
+- Mengolah citra menjadi data yang dapat diproses  
+- Memahami kondisi lingkungan berdasarkan data visual  
+
+Konsep ini digunakan agar sistem, khususnya robot, mampu “melihat” dan mengambil keputusan secara mandiri.
 
 ---
 
-##  Struktur Repository
+### 2. Peran Vision dalam Robot Amarine
+Dalam konteks Amarine, sistem vision berfungsi untuk:
+- Mendeteksi objek, termasuk objek bawah air  
+- Membantu navigasi otomatis  
+- Mengidentifikasi target dalam misi tertentu  
 
-```
-week1-amarine/
-├── README.md                      # Dokumentasi utama + opening ramah
-├── setup/
-│   ├── anaconda_setup.md          # Instalasi & perintah Conda step-by-step
-│   └── git_github.md              # Workflow Git: init → add → commit → push
-└── assignment/                    # Pengumpulan tugas
-    └── nama                       # Untuk Pengumpulan tugas sesuaikan dengan nama (harus buat folde dengan diberikan nama pribadi)
-```
+Dengan adanya sistem ini, robot dapat beroperasi tanpa ketergantungan penuh pada kontrol manual.
+
 ---
-Untuk materi bisa instalansi anaconda  <a href="setup/anaconda_setup.md">klik disini</a>
-Untuk materi bisa instalansi git & github <a href="setup/git_github.md">klik disini</a>
+
+### 3. Alur Kerja Vision System
+
+Sistem vision bekerja melalui beberapa tahapan utama:
+
+1. **Capture**  
+   Pengambilan gambar menggunakan kamera  
+
+2. **Processing**  
+   Pengolahan citra digital menjadi bentuk data  
+
+3. **Analysis**  
+   Proses deteksi atau klasifikasi objek  
+
+4. **Decision**  
+   Penentuan aksi berdasarkan hasil analisis  
+
+---
+
+### 4. Tools dan Teknologi yang Digunakan
+
+#### Programming & Libraries
+- Python  
+- NumPy  
+- Matplotlib  
+- OpenCV  
+
+#### Deep Learning Framework
+- PyTorch  
+- TensorFlow  
+
+#### Object Detection Model
+- YOLO  
+- SSD (Single Shot Detector)  
+- Faster R-CNN  
+
+#### Dataset & Training Tools
+- Roboflow  
+
+#### Simulation, OS, dan Hardware
+- Gazebo  
+- Docker  
+- Jetson Orin Nano  
+- ROS 2  
+
+#### Documentation
+- GitHub  
+
+---
+
+### 5. Jenis Aktivitas dalam Vision Amarine
+- Pengembangan untuk kebutuhan lomba  
+- Implementasi untuk riset  
+- Penerapan transfer learning  
+
+---
+
+## Studi Kasus
+Diskusi kelompok mengenai:
+- Peluang penggunaan Computer Vision dalam robotika  
+- Tantangan implementasi vision system di lingkungan nyata  
+
+---
+
+## Praktik
+- Setup awal tools yang diperlukan (persiapan environment akan dilanjutkan di minggu berikutnya)  
+- Eksplorasi repository dan dokumentasi  
+
+---
+
+## Output yang Diharapkan
+- Memahami konsep dasar vision system  
+- Mengetahui alur kerja Computer Vision  
+- Mengenal tools yang akan digunakan pada pembelajaran selanjutnya  
+
+---
+
+## Catatan
+Materi pada minggu ini berfokus pada pemahaman konsep dan orientasi awal. Implementasi teknis akan dilakukan secara bertahap mulai minggu berikutnya.
