@@ -1,259 +1,276 @@
-#  Panduan Git & GitHub — Workflow Dasar
+# Setup GitHub dan Instalasi Git
 
-Dokumen ini memandu kamu memahami dan mempraktikkan alur kerja Git & GitHub dari awal hingga repository pertama kamu berhasil di-*push*.
-
----
-
-## Apa itu Git & GitHub?
-
-| Konsep | Penjelasan |
-|--------|-----------|
-| **Git** | Sistem version control lokal yang mencatat setiap perubahan kode di komputermu |
-| **GitHub** | Platform cloud untuk menyimpan dan berbagi repository Git secara online |
-| **Repository (Repo)** | Folder proyek yang dikelola oleh Git |
-| **Commit** | "Snapshot" dari perubahan kode pada satu waktu tertentu |
-| **Branch** | Cabang pengembangan yang independen |
-| **Remote** | Versi repository yang ada di server (GitHub) |
+Panduan ini digunakan untuk menyiapkan Git dan GitHub serta alur kontribusi pada proyek Transfer Learning Vision Amarine.
 
 ---
 
-##  1. Instalasi Git
+# 1. Membuat Akun GitHub
 
-### Windows
-Download di [https://git-scm.com/download/win](https://git-scm.com/download/win) dan jalankan installer.
+Buka website:
+[https://github.com](https://github.com)
 
-### macOS
+Daftarkan akun baru.
+
+Fungsi GitHub:
+
+* Menyimpan repository secara online
+* Kolaborasi tim
+* Backup project
+* Version control
+
+Alasan:
+
+* Semua perubahan tercatat
+* Aman untuk kerja tim
+* Tidak merusak repository utama
+
+---
+
+# 2. Instalasi Git
+
+## 2.1 Download Git
+
+Buka:
+[https://git-scm.com/install/windows](https://git-scm.com/install/windows)
+
+Download versi Windows (64-bit)
+
+---
+
+## 2.2 Instalasi Git
+
+Pilih lokasi instalasi → gunakan default
+Alasan: stabil dan direkomendasikan
+
+---
+
+Select Components:
+
+Centang:
+
+* Additional icons → akses cepat
+* On the Desktop → shortcut
+* Windows Explorer integration → klik kanan Git
+* Open Git Bash here → buka terminal langsung
+* Open Git GUI here → alternatif GUI
+* Git LFS → untuk file besar
+* Associate .git* → dikenali sistem
+* Associate .sh files → bisa jalankan script
+* Add Git Bash ke Windows Terminal → integrasi
+* Scalar → performa repo besar
+
+Jangan centang:
+
+* Check daily updates → menghindari notifikasi
+
+---
+
+Default Editor:
+Pilih Visual Studio Code
+
+---
+
+Default Branch:
+Isi: main
+
+---
+
+PATH:
+Pilih:
+Git from command line and 3rd-party software
+
+---
+
+SSH:
+Pilih:
+Use bundled OpenSSH
+
+---
+
+HTTPS Backend:
+Pilih:
+Windows Secure Channel
+
+---
+
+Terminal:
+Pilih:
+MinTTY
+
+---
+
+Konfigurasi tambahan:
+
+Centang:
+
+* Fast-forward or merge
+* Git Credential Manager
+* Enable file system caching
+
+---
+
+## 2.3 Verifikasi
+
 ```bash
-# Menggunakan Homebrew
-brew install git
-
-# Atau cukup jalankan perintah ini, macOS akan meminta instalasi otomatis
 git --version
 ```
 
-### Linux (Ubuntu/Debian)
-```bash
-sudo apt update
-sudo apt install git -y
-```
-
-### Verifikasi
-```bash
-git --version
-# Output: git version 2.x.x
-```
+Jika muncul versi, instalasi berhasil.
 
 ---
 
-##  2. Konfigurasi Awal Git
-
-Lakukan konfigurasi ini **sekali saja** setelah instalasi Git:
+## 2.4 Konfigurasi Git
 
 ```bash
-# Set nama pengguna (gunakan nama aslimu)
-git config --global user.name "Nama Lengkapmu"
-
-# Set email (gunakan email yang sama dengan akun GitHub)
-git config --global user.email "emailmu@example.com"
-
-# Set editor default (opsional, VS Code direkomendasikan)
-git config --global core.editor "code --wait"
-
-# Atur branch default bernama 'main'
-git config --global init.defaultBranch main
-
-# Verifikasi konfigurasi
-git config --list
+git config --global user.name "Nama"
+git config --global user.email "email@gmail.com"
 ```
+
+Alasan:
+
+* identitas saat commit
 
 ---
 
-##  3. Membuat Repository di GitHub
-
-1. Buka [https://github.com](https://github.com) dan login
-2. Klik tombol **"New"** atau **"+"** di pojok kanan atas
-3. Isi informasi repository:
-   - **Repository name:** `week1-amarine`
-   - **Description:** `Week 1 - Anaconda Environment Setup and Basic GitHub`
-   - **Visibility:** Public
-   -  Jangan centang "Initialize this repository with a README"
-4. Klik **"Create repository"**
-5. Salin URL repository (format: `https://github.com/username/week1-amarine.git`)
+# 3. Alur Kontribusi GitHub (WAJIB IKUTI)
 
 ---
 
-##  4. Alur Kerja Git Lengkap
+## 3.1 Fork Repository
 
-### Langkah 1 — Inisialisasi Repository Lokal
+Fork repository ke akun sendiri
+
+Alasan:
+
+* tidak merusak repository utama
+
+---
+
+## 3.2 Clone Repository
 
 ```bash
-# Buat folder proyek
-mkdir week1-amarine
-cd week1-amarine
-
-# Inisialisasi Git di folder ini
-git init
-
-# Output: Initialized empty Git repository in .../week1-amarine/.git/
+git clone https://github.com/[user fork milik teman teman]/Transfer-Learning-Amarine-Vision.git # fork milik teman teman 
+cd Transfer-Learning-Amarine-Vision
 ```
 
-### Langkah 2 — Buat File Pertama
+Alasan:
+
+* mengambil project ke lokal
+
+---
+
+## 3.3 Tambahkan Upstream (WAJIB — dilakukan sekali saat awal setelah cloning)
 
 ```bash
-# Buat file README sederhana
-echo "# Week 1 - Amarine" > README.md
+git remote add upstream https://github.com/ezra1702/Transfer-Learning-Amarine-Vision.git # repository utama
+```
 
-# Cek status repository
+Alasan:
+
+* Digunakan **sekali saja saat pertama kali setup setelah cloning repository**
+* Menghubungkan repository lokal ke repository utama (owner)
+* Memungkinkan update langsung dari terminal tanpa langkah tambahan
+
+Penjelasan:
+
+* Perintah ini hanya dilakukan di awal dan **tidak perlu diulang lagi**
+* Setelah dijalankan, koneksi ke repository utama akan tersimpan permanen di project
+
+Penting:
+
+* Dengan menggunakan `upstream`, **tidak perlu menekan tombol "Sync fork" di GitHub**
+* Semua proses update dilakukan langsung melalui terminal
+
+## 3.4 WAJIB: Cek Issues Sebelum Mengerjakan
+
+Buka repository utama di GitHub → masuk ke tab **Issues**
+
+Pilih issue yang akan dikerjakan.
+
+Alasan:
+
+* memastikan tugas yang dikerjakan jelas
+* menghindari duplikasi pekerjaan dengan orang lain
+* mengikuti kebutuhan project
+
+---
+
+## 3.5 Update Repository (WAJIB sebelum mulai kerja)
+
+```bash
 git status
-# Output: README.md muncul sebagai "Untracked files"
-```
-
-### Langkah 3 — Staging (git add)
-
-```bash
-# Tambahkan file tertentu ke staging area
-git add README.md
-
-# Atau tambahkan SEMUA perubahan sekaligus
-git add .
-
-# Cek status lagi
-git status
-# Output: README.md muncul sebagai "Changes to be committed"
-```
-
->  **Staging area** adalah tempat "antrian" sebelum perubahan disimpan sebagai commit.
-
-### Langkah 4 — Commit
-
-```bash
-# Simpan perubahan dengan pesan yang deskriptif
-git commit -m "feat: tambah README.md awal"
-
-# Output:
-# [main (root-commit) abc1234] feat: tambah README.md awal
-# 1 file changed, 1 insertion(+)
-```
-
->  **Tips commit message:** Gunakan format `tipe: deskripsi singkat`
-> - `feat:` untuk fitur baru
-> - `fix:` untuk perbaikan bug
-> - `docs:` untuk perubahan dokumentasi
-> - `chore:` untuk maintenance
-
-### Langkah 5 — Hubungkan ke GitHub (Remote)
-
-```bash
-# Tambahkan remote origin (ganti URL dengan milikmu)
-git remote add origin https://github.com/username/week1-amarine.git
-
-# Verifikasi remote
-git remote -v
-# Output:
-# origin  https://github.com/username/week1-amarine.git (fetch)
-# origin  https://github.com/username/week1-amarine.git (push)
-```
-
-### Langkah 6 — Push ke GitHub
-
-```bash
-# Push branch main ke GitHub (-u untuk set upstream)
-git push -u origin main
-
-# Setelah pertama kali, cukup gunakan:
-git push
-```
-
----
-
-## 5. Perintah Git yang Sering Digunakan
-
-### Melihat Status & Riwayat
-
-```bash
-# Cek status perubahan
-git status
-
-# Lihat riwayat commit
-git log
-
-# Lihat riwayat commit (ringkas, satu baris)
-git log --oneline
-
-# Lihat perubahan yang belum di-stage
-git diff
-
-# Lihat perubahan yang sudah di-stage
-git diff --staged
-```
-
-### Mengambil Perubahan dari GitHub
-
-```bash
-# Ambil perubahan terbaru dari remote
-git pull
-
-# Sama dengan (git fetch + git merge)
-git fetch origin
-git merge origin/main
-```
-
-### Clone Repository
-
-```bash
-# Clone repository orang lain atau milikmu di komputer baru
-git clone https://github.com/username/week1-amarine.git
-
-# Clone ke folder dengan nama tertentu
-git clone https://github.com/username/week1-amarine.git nama-folder
-```
-
-### Membatalkan Perubahan
-
-```bash
-# Batalkan perubahan pada file sebelum di-stage
-git restore nama-file.py
-
-# Batalkan staging (kembalikan ke unstaged)
-git restore --staged nama-file.py
-
-# Kembali ke commit tertentu (HATI-HATI: destruktif)
-git reset --hard abc1234
-```
-
----
-
-##  6. Dasar-dasar Branch
-
-```bash
-# Lihat semua branch
-git branch
-
-# Buat branch baru
-git branch nama-branch
-
-# Pindah ke branch lain
-git checkout nama-branch
-
-# Buat dan langsung pindah ke branch baru
-git checkout -b nama-branch
-
-# Merge branch ke main
 git checkout main
-git merge nama-branch
-```
+git pull upstream main
+git push origin main
+````
+
+Penjelasan:
+
+* `git status` → memastikan tidak ada perubahan atau conflict (HARUS clean)
+* `git checkout main` → pindah ke branch utama
+* `git pull upstream main` → ambil update terbaru dari repository utama
+* `git push origin main` → sinkronkan ke repository sendiri (fork)
+
+Alasan:
+
+* memastikan repository dalam kondisi bersih sebelum update
+* menghindari conflict saat mengambil perubahan terbaru
+* memastikan menggunakan versi terbaru dari owner
+* menjaga sinkronisasi antara local, upstream, dan origin
 
 ---
 
+## 3.6 Buat Branch Baru
 
-##  Diagram Alur Kerja Git
+```bash
+git checkout -b [branch-sendiri]
+```
 
-```
-Working Directory  →  Staging Area  →  Local Repo  →  Remote (GitHub)
-      |                    |                |                |
-   (edit file)          git add           git commit      git push
-                           |                |                |
-                      git restore     git log          git pull (balik)
-```
+Alasan:
+
+* tidak bekerja langsung di main
+* memisahkan pekerjaan
+* Setiap melakukan pekerjaan, buat branch baruuu yang berbeda - beda
 
 ---
+
+## 3.7 Kerjakan Tugas
+
+Lakukan perubahan sesuai issue yang dipilih.
+
+---
+
+## 3.8 Commit Perubahan
+
+```bash
+git add .
+git commit -m "menyelesaikan issue"
+```
+
+Alasan:
+
+* menyimpan perubahan
+* mencatat riwayat kerja
+
+---
+
+## 3.9 Push ke GitHub
+
+```bash
+git push origin [branch-sendiri]
+```
+
+Alasan:
+
+* mengirim hasil kerja ke repository GitHub
+
+---
+
+## 3.10 Pull Request
+
+Buka GitHub → klik "Compare & Pull Request"
+
+Alasan:
+
+* mengajukan perubahan ke repository utama
+* dilakukan review sebelum digabung

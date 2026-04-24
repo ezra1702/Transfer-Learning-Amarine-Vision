@@ -119,7 +119,7 @@ Jalankan perintah:
 ```bash
 conda --version
 ```
-
+   
 Jika versi conda muncul, maka instalasi berhasil.
 
 ---
