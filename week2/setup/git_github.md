@@ -207,8 +207,8 @@ git push origin main
 Penjelasan:
 
 * `git status` → memastikan tidak ada perubahan atau conflict (HARUS clean)
-* `git checkout main` → pindah ke branch utama
-* `git pull upstream main` → ambil update terbaru dari repository utama
+* `git checkout main` → pindah ke branch utama`
+* `git pull upstream main` → ambil update terbaru dari repository utama`
 * `git push origin main` → sinkronkan ke repository sendiri (fork)
 
 Alasan:
@@ -219,6 +219,7 @@ Alasan:
 * menjaga sinkronisasi antara local, upstream, dan origin
 
 ---
+
 
 ## 3.6 Buat Branch Baru
 
