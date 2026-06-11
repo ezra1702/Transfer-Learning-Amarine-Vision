@@ -1,8 +1,36 @@
 # Week 5: Introduction to YOLO & Roboflow Dataset Preparation
 
-Selamat datang di **Week 5**! Pada minggu ini, kita akan melompat ke dunia **Object Detection** (Deteksi Objek) secara real-time. Jika minggu lalu kita belajar dasar manipulasi piksel menggunakan OpenCV, minggu ini kita akan berkenalan dengan salah satu arsitektur deteksi objek paling populer dan tercepat di dunia AI saat ini: **YOLO (You Only Look Once)**, khususnya versi **YOLOv8** yang dikembangkan oleh Ultralytics.
+Selamat datang di **Week 5**! Pada minggu ini, kita akan melompat ke dunia **Object Detection** (Deteksi Objek) secara real-time. Jika minggu lalu kita belajar dasar manipulasi piksel menggunakan OpenCV, minggu ini kita akan mempelajari teori dasar **CNN (Convolutional Neural Network)** sebagai landasan berpikir kita, sedangkan untuk **pengaplikasiannya** kita akan menerapkan **YOLO (You Only Look Once)**, khususnya versi **YOLOv8** yang dikembangkan oleh Ultralytics.
 
 Selain itu, kita juga akan mempelajari bagaimana cara menyiapkan dataset kustom berkualitas menggunakan platform cloud **Roboflow**, yang mencakup proses pelabelan (labeling), pembersihan data (preprocessing), hingga rekayasa variasi data (augmentation).
+
+---
+
+## Mengapa Kita Wajib Mempelajari Materi Ini? (Motivasi & Penerapan)
+
+Bagi seorang pemula di bidang **Computer Vision** (Visi Komputer) dan **Image Processing** (Pemrosesan Citra), Anda mungkin bertanya: *"Untuk apa kita mempelajari semua ini? Mengapa kita harus belajar OpenCV, Roboflow, dan YOLO?"*
+
+Secara mendasar, pemrosesan citra adalah teknologi yang menjembatani **kamera digital (mata)** dengan **kecerdasan komputer (otak)** agar sistem otomatis atau robot dapat memahami dunia di sekitarnya. 
+
+Berikut adalah alasan mengapa rangkaian materi ini sangat wajib Anda kuasai:
+
+### 1. OpenCV vs. Deep Learning (YOLO): Mengapa Tidak Cukup OpenCV Saja?
+*   **OpenCV (Mata)** sangat hebat untuk tugas-tugas dasar seperti memotong gambar, mengubah warna (BGR ke HSV), mendeteksi kecerahan, atau mendeteksi tepi garis. Namun, OpenCV bersifat **deterministik** (aturan harus ditulis manual oleh manusia).
+    *   *Contoh kasus*: Anda bisa memprogram OpenCV untuk mencari piksel berwarna kuning di bawah air. Namun, OpenCV tidak akan pernah tahu apakah warna kuning itu adalah seekor ikan badut (*clownfish*), sampah plastik kuning, atau terumbu karang mati.
+*   **YOLO (Otak)** masuk untuk memecahkan keterbatasan tersebut. YOLO menggunakan **Kecerdasan Buatan (AI)** untuk memahami makna semantik objek. Dengan melatih model YOLO, komputer bisa membedakan *"mana yang ikan, mana yang ubur-ubur, dan mana yang sampah laut"* berdasarkan pola bentuk yang telah dipelajarinya, bukan hanya warna mentah.
+
+### 2. Mengapa Butuh Roboflow? (Kunci Sukses AI adalah Data)
+Di era modern, membuat model AI tidak lagi dimulai dari menulis ribuan baris kode jaringan saraf tiruan dari nol. Platform seperti **Roboflow** digunakan karena **80% pekerjaan AI adalah menyiapkan data**. 
+Roboflow mempermudah pemula untuk:
+*   Melabeli objek secara akurat (annotation).
+*   Melakukan pembersihan ukuran gambar (preprocessing).
+*   Melakukan rekayasa variasi data (augmentation) seperti memutar atau mengubah kontras gambar secara massal agar AI kita tetap cerdas meski gambar di lapangan buram atau gelap.
+
+### 3. Penerapan Riil Robot AUV
+Sebagai bagian dari proyek **Amarine Vision**, teknologi ini merupakan komponen inti yang wajib dikuasai untuk menyelesaikan masalah nyata di laut:
+*   **Autonomous Underwater Vehicle (AUV)**: Untuk melihat jalur tercepat dan bagaimana berjalan
+
+Dengan mempelajari modul ini, Anda tidak hanya belajar coding, melainkan membangun solusi cerdas yang memberi kemampuan bagi robot atau komputer untuk "melihat" dan "membantu" melestarikan ekosistem laut kita!
 
 ---
 
@@ -15,23 +43,35 @@ Sebelum masuk ke YOLO, penting bagi kita untuk memahami perbedaan beberapa tugas
 *   **Object Detection**: Menentukan lokasi dan mengidentifikasi *banyak objek sekaligus* dalam satu gambar (Output: Multi Bounding Box + Label Kelas untuk tiap kotak).
 *   **Instance Segmentation**: Mengidentifikasi setiap objek dan menentukan batas piksel spesifik dari objek tersebut (bukan hanya kotak pembatas).
 
-### One-Stage vs. Two-Stage Detector
+### Hubungan dari CNN ke YOLO: Teori vs. Pengaplikasian
 
-Metode Object Detection umumnya dibagi menjadi dua kategori utama berdasarkan arsitekturnya:
+Mungkin Anda bertanya-tanya, **"Jika kita mempelajari Convolutional Neural Network (CNN), mengapa sekarang kita melompat ke YOLO? Apa hubungannya?"**
+
+Jawabannya adalah: **YOLO sebenarnya adalah sebuah CNN!** Di kelas ini, kita mempelajari **teori dasar CNN** untuk memahami bagaimana komputer mengekstrak fitur visual secara hierarkis (dari bentuk garis hingga pola objek kompleks). Namun, untuk **pengaplikasian/praktik deteksi objek**, kita langsung menggunakan **YOLOv8** karena arsitekturnya jauh lebih efisien dibandingkan dengan CNN klasifikasi klasik.
 
 ```mermaid
 graph TD
-    A[Object Detection Algorithms] --> B[Two-Stage Detector]
-    A --> C[One-Stage Detector]
+    A[Gambar Input] --> B[CNN Klasik untuk Klasifikasi]
+    B --> B_Out[Hanya menghasilkan 1 Label Kelas untuk 1 Gambar]
     
-    B --> B1["Contoh: R-CNN, Fast R-CNN, Faster R-CNN"]
-    B --> B2["Cara Kerja: Tahap 1 mengusulkan area (Region Proposal), Tahap 2 melakukan klasifikasi objek di tiap area"]
-    B --> B3["Kelebihan: Sangat akurat<br>Kekurangan: Lambat, tidak cocok untuk real-time edge device"]
+    A --> C[Sliding Window / Crop Gambar]
+    C --> C2[Ratusan Crop Gambar]
+    C2 --> C3[Masukkan ke CNN berulang kali]
+    C3 --> C_Out[Deteksi Objek lambat & boros komputasi]
     
-    C --> C1["Contoh: YOLO, SSD, RetinaNet"]
-    C --> C2["Cara Kerja: Memprediksi bounding box dan probabilitas kelas langsung dalam satu kali proses forward pass"]
-    C --> C3["Kelebihan: Ultra cepat, cocok untuk real-time & edge device (Jetson, HP)<br>Kekurangan: Akurasi objek kecil sedikit di bawah Two-Stage (tapi terus membaik)"]
+    A --> D[YOLO: Fully Convolutional Network]
+    D --> D2[Proses seluruh gambar dalam 1 Forward Pass]
+    D2 --> D_Out[Deteksi BBox & Kelas di seluruh Grid secara simultan]
 ```
+
+*   **Keterbatasan CNN Klasifikasi Tradisional**:
+    CNN klasifikasi dirancang hanya untuk memprediksi satu label utama dari sebuah gambar (contoh: *"Ini gambar ubur-ubur"*). Jika di dalam gambar terdapat banyak objek di lokasi berbeda (misal: 3 ikan dan 2 ubur-ubur), CNN klasifikasi tradisional tidak bisa menunjukkan lokasinya atau memisahkannya.
+*   **Pendekatan Naif (Sliding Window)**:
+    Untuk mendeteksi banyak objek dengan CNN klasifikasi, kita harus memotong-motong gambar menjadi ratusan kotak kecil lalu menjalankannya ke model CNN secara berulang-ulang. Pendekatan ini sangat lambat dan tidak memungkinkan untuk deteksi *real-time*.
+*   **Solusi YOLO (You Only Look Once)**:
+    YOLO dibangun di atas fondasi lapisan konvolusi (Convolutional Layers) untuk mengekstrak fitur gambar. Bedanya, YOLO tidak memotong gambar, melainkan memproses gambar utuh secara langsung. Melalui satu kali jalan (*one single forward pass*), arsitektur konvolusi YOLO langsung memprediksi tensor koordinat kotak pembatas (bounding box) dan probabilitas kelas untuk setiap sel grid di seluruh gambar secara bersamaan.
+
+Oleh karena itu, perpindahan dari **CNN klasik ke YOLO** adalah transisi dari sistem klasifikasi gambar tunggal menjadi sistem pelacakan multi-objek yang hemat daya, cerdas, dan bekerja secara *real-time*.
 
 ---
 
@@ -319,6 +359,35 @@ cap.release()
 cv.destroyAllWindows()
 print("Pengujian video dengan model kustom selesai!")
 ```
+
+---
+
+## 8. Evaluasi Performa Model Kustom (Metrik Kuantitatif)
+Selain pengujian visual (kualitatif) lewat video, kita juga harus mengukur performa model kita secara angka (kuantitatif). Di dalam machine learning dan YOLOv8, kita menggunakan data validasi untuk menghitung metrik-metrik evaluasi akurasi secara otomatis.
+
+Untuk melakukan evaluasi data validasi menggunakan script Python setelah training:
+```python
+from ultralytics import YOLO
+
+# 1. Muat model kustom hasil training Anda
+model = YOLO('runs/detect/train/weights/best.pt')
+
+# 2. Jalankan fungsi evaluasi (validasi)
+# Fungsi ini secara otomatis membaca subset data validasi yang terdaftar pada file data.yaml
+metrics = model.val()
+
+# 3. Cetak metrik hasil evaluasi
+print(f"Mean Average Precision @ IoU=0.5 (mAP50): {metrics.box.map50:.4f}")
+print(f"Mean Average Precision @ IoU=0.5:0.95 (mAP50-95): {metrics.box.map:.4f}")
+print(f"Precision: {metrics.box.mp:.4f}")
+print(f"Recall: {metrics.box.mr:.4f}")
+```
+
+### Penjelasan Singkat Metrik Evaluasi:
+*   **Precision (Presisi)**: Menjawab pertanyaan: *"Dari semua objek yang ditebak oleh model, berapa persen yang tebakannya benar-benar tepat?"*
+*   **Recall (Sensitivitas)**: Menjawab pertanyaan: *"Dari semua objek asli yang ada di dataset, berapa persen objek yang berhasil ditemukan oleh model?"*
+*   **mAP50 (Mean Average Precision @ IoU 0.5)**: Metrik standar deteksi objek di mana prediksi dianggap benar jika kotak prediksi bertumpukan (*Overlap* / IoU) minimal 50% dengan kotak pelabelan asli.
+*   **mAP50-95**: Metrik standar yang lebih ketat, mengukur rata-rata mAP pada rentang batas overlap 50% hingga 95%. Metrik ini merupakan standar akurasi yang digunakan dalam riset AI saat ini.
 
 ---
 
