@@ -246,7 +246,7 @@ conda activate <your environment which was installed openCV > # activate your ex
 python3 <your name file.py >
 ```
 
-🚀 Selamat belajar! Week berikutnya kita akan mulai eksplorasi Introduction to CNN!
+🚀 Selamat belajar! Week berikutnya kita akan mulai eksplorasi Introduction to YOLO & Roboflow!
 
 ## References
 - Operasi Basic: https://docs.opencv.org/3.4/d3/df2/tutorial_py_basic_ops.html

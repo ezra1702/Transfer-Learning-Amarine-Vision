@@ -37,8 +37,8 @@ Dokumen ini diharapkan dapat menjadi acuan dalam mengembangkan kemampuan di bida
 | 2     | Python Environment & Basic GitHub | [Go to Week 2](week2/README.md) | Setup Python environment serta penggunaan dasar GitHub (commit, push, pull)                        | Done        |
 | 3     | NumPy & Matplotlib                | [Go to Week 3](week3/README.md) | Manipulasi array dengan NumPy, visualisasi data dengan Matplotlib, dan fondasi analisis data numerik | Done        |
 | 4     | Introduction to OpenCV            | [Go to Week 4](week4/README.md) | Operasi dasar OpenCV, deteksi warna, dan manipulasi gambar/video                                    | Done        |
-| 5     | Dataset Creation & Preprocessing  | -                   | Pembuatan dataset, labeling, augmentasi, dan pembagian data                                        | -           |
-| 6     | Introduction to YOLO              | -                   | Dasar YOLO, arsitektur, serta parameter awal                                                       | -           |
+| 5     | Introduction to YOLO & Roboflow   | [Go to Week 5](week5/README.md) | Pengenalan YOLOv8, alur kerja Roboflow (labeling, augmentasi), dan basic inference                  | Done        |
+| 6     | Custom Training YOLOv8            | -                   | Training model YOLOv8 kustom, analisis metrik training (mAP, loss), dan evaluasi awal               | -           |
 | Break | Academic Break                    | -                   | Penguatan materi Week 3 hingga Week 6                                                              | -           |
 | 7     | Deep Dive YOLO                    | -                   | Training dengan dataset kustom dan evaluasi model                                                  | -           |
 | 8     | ROS 2 Integration                 | -                   | Integrasi YOLO dengan ROS 2 dan sistem robotik                                                     | -           |
@@ -128,59 +128,66 @@ Praktik:
 
 ---
 
-## Week 4: Neural Network
+## Week 4: Introduction to OpenCV
 
 Materi:
 
-* Convolutional layer
-* Pooling layer
-* Activation function
-* Fully connected layer
+* Apa itu OpenCV?
+* Reading Images, Video, Webcam
+* Resizing dan Rescaling Frames
+* Drawing Shapes dan Putting Text
+* Filterisasi Fungsi Esensial (cvtColor, GaussianBlur, Crop)
+* Image Transformations (Translasi, Rotasi, Flip)
+* Color Detection menggunakan HSV Space
 
 Studi Kasus:
 
-* Klasifikasi menggunakan dataset Fashion MNIST
+* Deteksi warna pada gambar/video menggunakan HSV Space
 
 Praktik:
 
-* Training model CNN
+* Implementasi filter gambar dan deteksi warna dengan OpenCV
 
 ---
 
-## Week 5: Dataset & Preprocessing
+## Week 5: Introduction to YOLO & Roboflow
 
 Materi:
 
-* Pembuatan dataset
-* Labeling dan anotasi
-* Augmentasi data
-* Pembagian dataset
+* Pengenalan konsep dasar Object Detection (One-Stage vs. Two-Stage)
+* Sejarah & arsitektur dasar YOLO (fokus ke YOLOv8)
+* Persiapan dataset dengan Roboflow (Upload, Labeling, Augmentation, Export)
+* Basic Inference dengan pre-trained model YOLOv8 (`yolov8n.pt`)
 
 Studi Kasus:
 
-* Perbandingan hasil sebelum dan sesudah augmentasi
+* Eksperimen deteksi objek bawah air / kelautan menggunakan model pre-trained
 
 Praktik:
 
-* Membuat dataset sendiri
+* Membuat akun Roboflow, mengunggah dan melabeli dataset kustom (marine objects)
+* Melakukan ekspor dataset untuk training YOLOv8
+* Menjalankan inferensi awal menggunakan library Ultralytics
 
 ---
 
-## Week 6: Introduction to YOLO
+## Week 6: Custom Training YOLOv8
 
 Materi:
 
-* Konsep YOLO
-* Struktur model
-* Parameter dasar
+* Konsep Transfer Learning pada YOLOv8
+* Konfigurasi training dataset (`data.yaml`)
+* Parameter training YOLOv8 (epochs, batch size, image size, learning rate)
+* Evaluasi metrik training (mAP50, mAP50-95, Precision, Recall, Loss curves)
 
 Studi Kasus:
 
-* Deteksi objek menggunakan dataset umum
+* Pelatihan model YOLOv8 menggunakan dataset kustom dari Roboflow
 
 Praktik:
 
-* Eksperimen parameter
+* Training model YOLOv8 secara lokal atau menggunakan Google Colab
+* Menganalisis metrik hasil pelatihan (runs/detect/train)
 
 ---
 
